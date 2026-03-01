@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css" />
+    <title>My Portfolio</title>
+  </head>
+  <body>
+    <div id="app">
+
+      <!-- NAVBAR -->
+      <nav class="sticky-nav">
+        <div class="container">
+          <a class="navbar-brand" href="#">KYFE</a>
+
+          <!-- Desktop nav -->
+          <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+          </ul>
+
+          <!-- Hamburger -->
+          <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile dropdown -->
+      <div class="nav-dropdown" id="navDropdown">
+        <a href="#" onclick="document.getElementById('navDropdown').classList.remove('open')">Home</a>
+        <a href="#about"                         onclick="document.getElementById('navDropdown').classList.remove('open')">About Me</a>
+        <a href="#certificates"                  onclick="document.getElementById('navDropdown').classList.remove('open')">Certificates</a>
+      </div>
+
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+          <div class="hero-center-wrap">
+            <div class="hero-name-row">
+              <p class="name-label">MUHAMMAD <span class="accent">RIZKY</span></p>
+              <p class="name-label">FEBRIANTO</p>
+            </div>
+            <div class="hero-middle">
+              <h1 class="portfolio-word">PORTFOLIO</h1>
+              <div class="hero-photo">
+                <img src="../assets/hero-img.png" alt="Foto Profil" />
+              </div>
+            </div>
+          </div>
+          <div class="hero-bottom-row">
+            <span></span>
+            <a href="#about" class="btn-cta">GET STARTED</a>
+            <p class="sub-label">{{ subLabel }}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT ME -->
+      <section class="about-me" id="about">
+        <div class="container">
+          <div class="about-title">
+            <span class="about-title-sub">GET TO KNOW ME</span>
+            <h2 class="about-title-main">About <span class="accent">Me</span></h2>
+          </div>
+          <div class="row align-items-stretch g-5">
+            <div class="col-lg-4 d-flex">
+              <div class="about-photo-wrap">
+                <img src="../assets/img-me.jpeg" alt="Muhammad Rizky Febrianto" />
+              </div>
+            </div>
+            <div class="col-lg-8">
+              <p class="about-bio">
+                Halo Semua, Aku <strong>Muhammad Rizky Febrianto</strong> atau biasa dipanggil
+                <strong>Rizky</strong>. Aku adalah seorang mahasiswa
+                <a href="https://si.ft.unmul.ac.id/" target="_blank" class="about-link">Program Studi Sistem Informasi</a>
+                di Universitas Mulawarman. Aku tertarik dengan dunia programming khususnya
+                web development sejak di SMA. Salam kenal semua!
+              </p>
+              <div class="experience-wrap">
+                <p class="section-label">EXPERIENCE</p>
+                <div class="exp-list">
+                  <div v-for="(exp, i) in experiences" :key="i" class="exp-item">
+                    <div class="exp-dot"></div>
+                    <div class="exp-content">
+                      <span class="exp-role">{{ exp.role }}</span>
+                      <span class="exp-year">{{ exp.year }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="skills-wrap">
+                <p class="section-label">SKILLS</p>
+                <div v-for="skill in skills" :key="skill.name" class="skill-item">
+                  <div class="skill-header">
+                    <span class="skill-name">{{ skill.name }}</span>
+                    <span class="skill-pct">{{ skill.pct }}%</span>
+                  </div>
+                  <div class="skill-bar-track">
+                    <div class="skill-bar-fill" :style="{ width: skill.pct + '%' }"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CERTIFICATES -->
+      <section class="certificates" id="certificates">
+        <div class="container">
+          <div class="cert-title">
+            <span class="cert-title-sub">WHAT I'VE EARNED</span>
+            <h2 class="cert-title-main">Certi<span class="accent">ficates</span></h2>
+          </div>
+          <div class="row g-4">
+            <div v-for="cert in certificates" :key="cert.title" class="col-lg-4 col-md-6">
+              <div class="cert-card">
+                <div class="cert-img-wrap">
+                  <img :src="'../assets/' + cert.file" :alt="cert.title" />
+                  <div class="cert-overlay">
+                    <a :href="'../assets/' + cert.file" target="_blank" class="cert-view-btn">Lihat →</a>
+                  </div>
+                </div>
+                <div class="cert-info">
+                  <p class="cert-tag">{{ cert.tag }}</p>
+                  <h3 class="cert-name">{{ cert.title }}</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="site-footer">
+        <div class="container">
+          <div class="footer-inner">
+            <p class="footer-brand">KYFE</p>
+            <p class="footer-copy">© {{ currentYear }} Muhammad Rizky Febrianto. All rights reserved.</p>
+            <p class="footer-made">Made with Vue & Bootstrap</p>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-YUe2LzesAfeftQad/G1VwEMnCq9OSuOWqm4mPBWp0b1OmkgMzSfBEVGsGEcaJl0" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      /* Vue app */
+      const { createApp } = Vue;
+      createApp({
+        data() {
+          return {
+            subLabel: 'Information System Student',
+            currentYear: new Date().getFullYear(),
+            experiences: [
+              { role: 'Staff Departemen HRD INFORSA',               year: '2025' },
+              { role: 'Ketua Panitia Raker INFORSA',                year: '2025' },
+              { role: 'Koordinator Lapangan APLIKASI',              year: '2025' },
+              { role: 'Anggota Divisi PDD I-Tech',                  year: '2025' },
+              { role: 'Anggota Divisi Humas dan Dana INSEVENT',     year: '2025' },
+              { role: 'Asisten Lab. Analitik dan Visualisasi Data', year: '2025' },
+              { role: 'Ketua Panitia INSEVENT',                     year: '2026' },
+            ],
+            skills: [
+              { name: 'Web Development',    pct: 50 },
+              { name: 'Mobile Development', pct: 50 },
+              { name: 'Design Graphics',    pct: 80 },
+            ],
+            certificates: [
+              { title: 'Sertifikat Kepengurusan INFORSA', tag: 'Organisasi',  file: 'Sertifikat Kepengurusan INFORSA.jpeg' },
+              { title: 'Sertifikat Panitia Aplikasi',     tag: 'Kepanitiaan', file: 'Sertifikat Panitia Aplikasi.jpg'       },
+              { title: 'Sertifikat Panitia Itech',        tag: 'Kepanitiaan', file: 'Sertifikat Panitia Itech.png'          },
+              { title: 'Sertifikat Panitia RAKER',        tag: 'Kepanitiaan', file: 'Sertifikat Panitia RAKER.png'          },
+              { title: 'Sertifikat RevoU Data Analyst',   tag: 'Pelatihan',   file: 'Sertifikat RevoU Data Analyst.jpg'     },
+              { title: 'Sertifikat Study Club UI/UX',     tag: 'Pelatihan',   file: 'Sertifikat Study Club UI_UX.png'       },
+            ],
+          };
+        },
+        mounted() {
+          this.syncNameWidth();
+          window.addEventListener('resize', this.syncNameWidth);
+
+          /* Hamburger */
+          const hamburger   = document.getElementById('hamburger');
+          const navDropdown = document.getElementById('navDropdown');
+
+          hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navDropdown.classList.toggle('open');
+          });
+
+          document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navDropdown.contains(e.target)) {
+              navDropdown.classList.remove('open');
+            }
+          });
+        },
+        methods: {
+          closeNav() {
+            document.getElementById('navDropdown').classList.remove('open');
+          },
+          syncNameWidth() {
+            const word    = document.querySelector('.portfolio-word');
+            const nameRow = document.querySelector('.hero-name-row');
+            if (word && nameRow) nameRow.style.width = word.offsetWidth + 'px';
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
