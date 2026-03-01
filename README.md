@@ -1,6 +1,9 @@
 Muhammad Rizky Febrianto | 2409116045
 # Web Portofolio
-## Navbar & Hero Section
+Website dirancang dengan konsep modern minimal portfolio, responsif pada perangkat Desktop maupun Mobile, serta menggunakan pendekatan component-based dengan Vue JS.
+
+## **Tampilan** dan **penjelasan kode** setiap section
+### Navbar & Hero Section
 <table>
   <tr>
     <th>Tampilan Desktop</th>
@@ -15,7 +18,61 @@ Muhammad Rizky Febrianto | 2409116045
   </tr>
 </table>
 
-## About Me Section
+**1. Navbar**
+
+Navbar berada pada bagian atas website dan bersifat sticky sehingga tetap terlihat saat halaman di-scroll.
+
+Fitur:
+- Logo brand KYFE
+- Navigasi ke:
+  - Home
+  - About Me
+  - Certificates
+- Hamburger menu untuk tampilan mobile
+- Dropdown navigation pada perangkat kecil
+
+Navbar dibuat menggunakan kombinasi:
+- HTML Flexbox Layout
+- CSS Fixed Position
+- JavaScript Event Listener
+
+Konsep utama:
+`<nav class="sticky-nav">`
+Navbar menggunakan:
+```
+position: fixed;
+top: 0;
+```
+Agar selalu berada di atas halaman. Hamburger menu dikontrol menggunakan: `navDropdown.classList.toggle('open');`
+
+**2. Hero**
+
+Hero section merupakan tampilan pertama yang dilihat pengguna.
+Elemen utama:
+- Nama lengkap pengguna
+- Judul besar PORTFOLIO
+- Foto profil di tengah (overlapping layout)
+- Background pattern grayscale
+- Tombol Get Started
+- Subtitle profesi
+
+Hero menggunakan struktur layered layout:
+- Background Layer
+- Typography Layer
+- Image Overlay
+- Action Button
+Foto profil diposisikan menggunakan:
+```
+position: absolute;
+transform: translateX(-50%);
+```
+Sehingga foto dapat overlap dengan teks PORTFOLIO.
+
+Vue digunakan untuk data dinamis: `{{ subLabel }}`
+
+---
+
+### About Me Section
 
 <table>
   <tr>
@@ -35,7 +92,35 @@ Muhammad Rizky Febrianto | 2409116045
   </tr>
 </table>
 
-## Certificates & Footer Section
+**3. About Me**
+
+Section ini menampilkan informasi pribadi serta latar belakang pengguna.
+Isi utama:
+- Foto profil
+- Deskripsi singkat mahasiswa
+- Daftar pengalaman organisasi & kepanitiaan
+- Progress bar kemampuan (Skills)
+
+Fitur visual:
+- Timeline experience
+- Animated skill bar
+- Dark theme section
+
+Menggunakan sistem Bootstrap Grid: `<div class="row">`
+
+**Experience**
+
+- Data pengalaman berasal dari Vue data: `experiences: []`
+- Kemudian ditampilkan menggunakan: `v-for="exp in experiences"`
+
+**Skills**
+
+- Progress bar dibuat dinamis: `:style="{ width: skill.pct + '%' }"`
+- Nilai persentase langsung mengatur panjang bar skill.
+
+---
+
+### Certificates & Footer Section
 
 <table>
   <tr>
@@ -53,3 +138,54 @@ Muhammad Rizky Febrianto | 2409116045
     </td>
   </tr>
 </table>
+
+**5. Certificates**
+
+Section untuk menampilkan sertifikat yang telah diperoleh.
+
+Fitur:
+- Card layout sertifikat
+- Hover overlay
+- Tombol preview sertifikat
+- Grid responsive (Desktop & Mobile)
+- Pengguna dapat membuka sertifikat secara langsung melalui tombol Lihat →.
+
+Card sertifikat dibuat secara reusable.
+
+Vue Loop:
+
+```v-for="cert in certificates"```
+
+Hover effect menggunakan:
+```
+.cert-overlay {
+  opacity: 0;
+}
+.cert-card:hover .cert-overlay {
+  opacity: 1;
+}
+```
+Sehingga tombol muncul saat hover.
+
+**6. Footer**
+
+Bagian akhir website yang berisi:
+- Brand website
+- Copyright otomatis
+- Teknologi yang digunakan
+
+Footer menggunakan data Vue untuk tahun otomatis:
+```currentYear: new Date().getFullYear()```
+
+Sehingga tidak perlu update manual setiap tahun.
+
+---
+
+## Teknologi yang digunakan
+- `HTML5` = Struktur halaman website
+- `CSS3` =	Styling & Layout
+- `Bootstrap 5` =	Grid system & responsive layout
+- `Vue JS 3`	= Reactive data & rendering
+- `JavaScript`	= Interaksi UI
+- `Google Fonts` =	Typography
+- `Responsive Design` =	Tampilan multi-device
