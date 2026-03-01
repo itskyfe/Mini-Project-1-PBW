@@ -45,6 +45,8 @@ top: 0;
 ```
 Agar selalu berada di atas halaman. Hamburger menu dikontrol menggunakan: `navDropdown.classList.toggle('open');`
 
+---
+
 **2. Hero**
 
 Hero section merupakan tampilan pertama yang dilihat pengguna.
@@ -167,6 +169,8 @@ Hover effect menggunakan:
 ```
 Sehingga tombol muncul saat hover.
 
+---
+
 **6. Footer**
 
 Bagian akhir website yang berisi:
@@ -178,8 +182,6 @@ Footer menggunakan data Vue untuk tahun otomatis:
 ```currentYear: new Date().getFullYear()```
 
 Sehingga tidak perlu update manual setiap tahun.
-
----
 
 ## Teknologi yang digunakan
 - `HTML5` = Struktur halaman website
